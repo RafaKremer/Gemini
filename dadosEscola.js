@@ -17,4 +17,4 @@ const turmas = [
 module.exports = {
     salas,
     turmas
-};  
+};
