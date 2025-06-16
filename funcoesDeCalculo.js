@@ -39,21 +39,31 @@ function contarAprovados(alunos, notaDeCorte) {
  * @returns {object} O objeto do aluno com maior nota.
  */
 
-function encontrarAlunoComMaiorNota(alunos) {
-    if (alunos.length === 0) {
-        return null;
-    }
-    let alunoComMaiorNota = alunos[0];
-    for (let i = 1; i < alunos.length; i++) {
-        if (alunos[i].nota > alunoComMaiorNota.nota) {
-            alunoComMaiorNota = alunos[i];
+function encontrarMaiorNota(alunos) {
+    if (alunos.length === 0) return 0;
+
+    let maiorNota = alunos[0].nota;
+    for (const aluno of alunos) {
+        if (aluno.nota > maiorNota) {
+            maiorNota = aluno.nota;
         }
     }
-    return alunoComMaiorNota;
+    return maiorNota;
+}
+
+/** 
+* @param {object[]} alunos
+* @param {number} nota
+* @param {object[]}
+*/
+
+function filtrarAlunosPorNota(alunos, nota) {
+    return alunos.filter(aluno => aluno.nota === nota);
 }
 
 module.exports = {
     calcularMedia,
     contarAprovados,
-    encontrarAlunoComMaiorNota
+    encontrarMaiorNota,
+    filtrarAlunosPorNota
 };

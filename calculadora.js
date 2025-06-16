@@ -36,12 +36,40 @@ function coletarDadosDosAlunos() {
     });
 }
 
+/**
+ * @param {string[]} nomes
+ * @returns {string}
+ */
+
+function formatarListaDeNomes(nomes) {
+    const quantidade = nomes.length;
+
+    if (quantidade === 0) {
+        return "";
+    }
+
+    if (quantidade === 1) {
+        return nomes[0];
+    }
+
+    if (quantidade === 2) {
+        return nomes.join(' e ');
+    }
+
+    const todosMenosOUltimo = nomes.slice(0, -1);
+    const ultimoNome = nomes[quantidade - 1];
+
+    return `${todosMenosOUltimo.join(', ')} e ${ultimoNome}`;
+}
+
 rl.on('close', () => {
     console.log("\n---- Processando Resultados ----");
 
     const mediaDaTurma = calculos.calcularMedia(listaDeAlunos);
     const numeroDeAprovados = calculos.contarAprovados(listaDeAlunos, 7.0);
-    const alunoDestaque = calculos.encontrarAlunoComMaiorNota(listaDeAlunos);
+    const maiorNota = calculos.encontrarMaiorNota(listaDeAlunos);
+    const alunosDestaque = calculos.filtrarAlunosPorNota(listaDeAlunos, maiorNota);
+    alunosDestaque.sort((a, b) => a.nome.localeCompare(b.nome));
 
     console.log("\n--- Relatório Final da Turma");
     console.log(`Alunos e Notas:`);
@@ -49,10 +77,18 @@ rl.on('close', () => {
         console.log(`- ${aluno.nome}: ${aluno.nota}`);
     });
     console.log("-----------------------------------");
-    console.log(`Numero de Aprovados: ${numeroDeAprovados}`);
+    console.log(`Numero de Alunos Aprovados: ${numeroDeAprovados}`);
     console.log(`Média Geral da Turma: ${mediaDaTurma.toFixed(2)}`);
-    if (alunoDestaque) {
-        console.log(`Aluno destaque (maior nota): ${alunoDestaque.nome} com nota ${alunoDestaque.nota}`);
+
+    if (alunosDestaque.length > 0) {
+        const nomesDestaque = alunosDestaque.map(aluno => aluno.nome);
+
+        const nomesFormatados = formatarListaDeNomes(nomesDestaque);
+
+        const textoAluno = alunosDestaque.length > 1 ? 'Alunos Destaque' : 'Aluno Destaque';
+
+        console.log(`${textoAluno} (maior nota): ${nomesFormatados} com nota ${maiorNota}`);
+        
     }
 });
 
