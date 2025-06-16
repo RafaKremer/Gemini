@@ -1,32 +1,32 @@
 /**
- * Calcula a média de uma lista de notas.
- * @param {number[]} notas - A array de notas para calcular a média.
+ * Calcula a média de uma lista de alunos.
+ * @param {object[]} alunos - A array de alunos para calcular a média.
  * @returns {number} A média calculada.
  */
 
-function calcularMedia(notas) {
-    if(notas.length === 0) {
+function calcularMedia(alunos) {
+    if (alunos.length === 0) {
         return 0;
     }
-}
 
-let soma = 0;
-for (let i = 0; i < notas.length; i++) {
-    soma += notas[i];
+    let soma = 0;
+    for (const aluno of alunos) {
+        soma += aluno.nota;
+    }
+    return soma / alunos.length;
 }
-return soma / notas.length;
 
 /**
  * Conta quantos alunos foram aprovados.
- * @param {number[]} notas - A array de notas.
+ * @param {object[]} alunos - A array de notas.
  * @param {number} notaDeCorte - A nota mínima para aprovação.
  * @returns {number} O número de alunos aprovados.
  */
 
-function contarAprovados(notas, notaDeCorte) {
+function contarAprovados(alunos, notaDeCorte) {
     let aprovados = 0;
-    for (let i = 0; i < notas.length; i++) {
-        if (notas[i] >= notaDeCorte) {
+    for (const aluno of alunos) {
+        if (aluno.nota >= notaDeCorte) {
             aprovados++;
         }
     }
@@ -34,26 +34,26 @@ function contarAprovados(notas, notaDeCorte) {
 }
 
 /**
- * Encontra a maior nota em uma lista.
- * @param {number[]} notas - A array de notas.
- * @returns {number} A maior nota encontrada.
+ * Encontra o aluno com a maior nota.
+ * @param {object[]} alunos - A array de objetos de alunos.
+ * @returns {object} O objeto do aluno com maior nota.
  */
 
-function encontrarMaiorNota(notas) {
-    if (notas.length === 0) {
-        return 0;
+function encontrarAlunoComMaiorNota(alunos) {
+    if (alunos.length === 0) {
+        return null;
     }
-    let maiorNota = notas[0];
-    for (let i = 1; i < notas.length; i++) {
-        if (notas[i] > maiorNota) {
-            maiorNota = notas[i];
+    let alunoComMaiorNota = alunos[0];
+    for (let i = 1; i < alunos.length; i++) {
+        if (alunos[i].nota > alunoComMaiorNota.nota) {
+            alunoComMaiorNota = alunos[i];
         }
     }
-    return maiorNota;
+    return alunoComMaiorNota;
 }
 
 module.exports = {
     calcularMedia,
     contarAprovados,
-    encontrarMaiorNota
+    encontrarAlunoComMaiorNota
 };
