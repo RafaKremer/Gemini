@@ -1,3 +1,18 @@
+Sistema de Gerenciamento Escolar (School Management)– Aplicação de Console com Node.js
+
+Descrição:
+Este projeto foi desenvolvido como uma solução de linha de comando para simular o gerenciamento de dados em um ambiente escolar. O sistema evoluiu de uma simples calculadora de notas para uma aplicação mais robusta, com foco na qualidade do código, experiência do usuário e lógica de negócio refinada.
+
+O núcleo do projeto lida com a coleta interativa de dados de alunos (nomes e notas), processa essas informações para gerar um relatório completo e se prepara para futuras expansões, como o gerenciamento de salas e funcionários.
+
+Principais Funcionalidades e Aprendizados:
+
+Arquitetura Modular (MVC): Para garantir a manutenibilidade e escalabilidade, o projeto foi estruturado em um padrão MVC adaptado para uma aplicação de console. A lógica de negócio (Model) foi isolada do controle de fluxo e da entrada do usuário (Controller), facilitando a depuração e a adição de novas funcionalidades.
+Validação e Robustez: Foi implementado um sistema de validação rigoroso para todas as entradas de dados. Nomes são validados com Expressões Regulares (Regex) para permitir apenas caracteres alfabéticos, e as notas são validadas para garantir que são numéricas e estão dentro do intervalo acadêmico permitido (0-10). O sistema é resiliente a entradas inválidas, solicitando a informação novamente de forma recursiva até que os dados corretos sejam fornecidos.
+Lógica de Negócio Complexa: A funcionalidade de "Aluno Destaque" foi cuidadosamente desenvolvida para ir além do básico. O sistema identifica a maior nota, filtra todos os alunos que a alcançaram (tratando empates), ordena os nomes em ordem alfabética e formata a saída gramaticalmente correta para um ou múltiplos vencedores. Além disso, uma regra de negócio foi adicionada para que o destaque só seja concedido a alunos com nota de aprovação.
+Programação Assíncrona: A interação com o usuário no terminal foi construída utilizando o módulo readline do Node.js, o que proporcionou uma experiência prática com o fluxo de trabalho assíncrono do JavaScript, utilizando callbacks e o Event Loop.
+JavaScript Moderno (ES6+): O projeto utiliza extensivamente funcionalidades modernas da linguagem, como Arrow Functions, let/const, desestruturação, template literals e métodos de array avançados (.map, .filter, .find, .sort).
+
 Histórico de Progresso do Projeto
 
 Log de 14/06/2025
