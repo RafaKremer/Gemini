@@ -54,7 +54,7 @@ function encontrarMaiorNota(alunos) {
 /** 
 * @param {object[]} alunos
 * @param {number} nota
-* @param {object[]}
+* @returns {object[]}
 */
 
 function filtrarAlunosPorNota(alunos, nota) {
